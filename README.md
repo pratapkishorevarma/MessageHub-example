@@ -12,3 +12,7 @@ Sample code available for below operations
 
 ##Main Class to be executed
   com.ibm.messageHub.main.MessageHubMain
+
+##Resources
+https://console.ng.bluemix.net/docs/services/MessageHub/index.html#messagehub
+http://kafka.apache.org/documentation.html
