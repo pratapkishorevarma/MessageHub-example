@@ -14,5 +14,5 @@ Sample code available for below operations
   com.ibm.messageHub.main.MessageHubMain
 
 ##Resources
-https://console.ng.bluemix.net/docs/services/MessageHub/index.html#messagehub
-http://kafka.apache.org/documentation.html
+  * https://console.ng.bluemix.net/docs/services/MessageHub/index.html#messagehub
+  * http://kafka.apache.org/documentation.html
