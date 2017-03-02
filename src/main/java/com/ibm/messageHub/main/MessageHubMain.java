@@ -28,7 +28,8 @@ import com.ibm.messageHub.beans.TopicParameters;
 
 public class MessageHubMain {
 
-	public static void main(String[] args) throws ClientProtocolException, IOException, URISyntaxException, InterruptedException {
+	public static void main(String[] args)
+			throws ClientProtocolException, IOException, URISyntaxException, InterruptedException {
 
 		Properties messageHubCreds = getMessageHubCredentials();
 		String apiKey = messageHubCreds.getProperty("apiKey");
@@ -44,15 +45,21 @@ public class MessageHubMain {
 		setJaasConfiguration(apiKey.substring(0, 16), apiKey.substring(16));
 		Properties producerProps = getProperties("producer.properties", kafkaBrokers);
 		Properties consumerProps = getProperties("consumer.properties", kafkaBrokers);
-		
+
 		MessageProducer producer = new MessageProducer(producerProps, topicParams.getName());
 		Thread producerThread = new Thread(producer);
 		producerThread.start();
-		
-		MessageConsumer consumer = new MessageConsumer(consumerProps, topicParams.getName());
-//		MessageConsumerWithCustomization consumer = new MessageConsumerWithCustomization(consumerProps, topicParams.getName());
-		Thread consumerThread = new Thread(consumer);
+
+		MessageConsumer consumer1 = new MessageConsumer(consumerProps, topicParams.getName());
+		Thread consumerThread = new Thread(consumer1);
 		consumerThread.start();
+
+		// Start another consumer with different group id, so that same message
+		// can be consumed by 2 consumers
+		MessageConsumerWithCustomization consumer2 = new MessageConsumerWithCustomization(consumerProps,
+				topicParams.getName());
+		Thread consumerThread2 = new Thread(consumer2);
+		consumerThread2.start();
 	}
 
 	private static Properties getProperties(String propertiesFile, String bootstrapServers) throws IOException {

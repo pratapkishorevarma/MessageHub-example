@@ -40,12 +40,12 @@ public class MessageConsumer implements Runnable {
 				ConsumerRecords<String, String> records = kafkaConsumer.poll(3000);
 
 				if (records.isEmpty()) {
-					System.out.println("No messages consumed");
+					System.out.println("No messages consumed by 1");
 				} else {
 					// Iterate through all the messages received and print
 					// their content
 					for (ConsumerRecord<String, String> record : records) {
-						System.out.println("Message consumed: " + record.toString());
+						System.out.println("Message consumed by 1: " + record.toString());
 					}
 				}
 			}

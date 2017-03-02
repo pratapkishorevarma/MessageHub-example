@@ -30,6 +30,8 @@ public class MessageConsumerWithCustomization implements Runnable {
 		consumerProperties.put("enable.auto.commit", "false");
 		consumerProperties.put("max.poll.records", 10);
 		consumerProperties.put("auto.offset.reset", "none");
+		consumerProperties.put("group.id", "policy-sample-group2");
+		consumerProperties.put("client.id", "policy-sample-consumer");
 
 		this.kafkaConsumer = new KafkaConsumer<String, String>(consumerProperties);
 
@@ -68,12 +70,12 @@ public class MessageConsumerWithCustomization implements Runnable {
 				ConsumerRecords<String, String> records = kafkaConsumer.poll(3000);
 
 				if (records.isEmpty()) {
-					System.out.println("No messages consumed");
+					System.out.println("No messages consumed by 2");
 				} else {
 					// Iterate through all the messages received and print
 					// their content
 					for (ConsumerRecord<String, String> record : records) {
-						System.out.println("Message consumed: " + record.toString());
+						System.out.println("Message consumed by 2: " + record.toString());
 						// Setting the offset will give more control on handling
 						// message ie., offset can be set only after the message
 						// is processed successfully.
