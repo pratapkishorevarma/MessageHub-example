@@ -1,4 +1,4 @@
-# SampleMessageHub
+# MessageHub-example
 
 This project has the sample code for using IBM Message Hub.
 
